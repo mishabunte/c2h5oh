@@ -1,0 +1,7 @@
+ngx_addon_name=ngx_c2h5oh
+HTTP_MODULES="$HTTP_MODULES ngx_c2h5oh_module"
+NGX_ADDON_SRCS="$NGX_ADDON_SRCS $ngx_addon_dir/ngx_c2h5oh_module.c"
+CFLAGS="$CFLAGS -DJSMN_PARENT_LINKS -O3 -I$ngx_addon_dir/../../c2h5oh -I$ngx_addon_dir/../../../deps/jsmn"
+CORE_LIBS="$CORE_LIBS -L$ngx_addon_dir/../../../lib" 
+CORE_LIBS="$CORE_LIBS -L$ngx_addon_dir/../../../deps/jsmn"
+CORE_LIBS="$CORE_LIBS -lc2h5oh -ljsmn -lpq -lstdc++"
