@@ -19,3 +19,8 @@ sudo ./deploy/c2h5oh-nginx_0.0.0_amd64.sh
 sudo vi /etc/c2h5oh/c2h5oh_nginx.conf
 sudo service c2h5oh_nginx restart
 ```
+
+Usage
+=====
+
+See [tests/web_test.pgsql!](tests/web_test.pgsql) for sample usage
