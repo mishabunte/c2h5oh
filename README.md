@@ -23,4 +23,6 @@ sudo service c2h5oh_nginx restart
 Usage
 =====
 
-See [tests/web_test.pgsql!](tests/web_test.pgsql) for sample usage
+See [tests/web_test.pgsql](tests/web_test.pgsql) for sample usage
+
+This test script includes get/set cookie, redirect, custom headers and synthetic /user/login/, /user/logout/, /user/auth/ samples
