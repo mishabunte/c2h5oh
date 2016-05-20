@@ -1,0 +1,5 @@
+dependencies:
+    override:
+        - sudo apt-get install cmake
+        - make debug
+        - make test
