@@ -4,14 +4,14 @@ Build
 Dependencies for build
 ----------------------
 
-cmake 3.2+
-g++ 4.7+
-zlibc 
-libpq 
-libboost (only for tests) 
-hg (mercurial client for jsmn - lightweight json parser repo clone) 
+* cmake 3.2+
+* g++ 4.7+
+* zlibc 
+* libpq 
+* libboost (only for tests) 
+* hg (mercurial client for jsmn - lightweight json parser repo clone) 
 
-postgresql 9.5 is required for testing
+* postgresql 9.5 is required for testing
 
 ```sh
 make debug
