@@ -4,4 +4,5 @@ lib
 *.autosave
 deps/*
 deploy
+src/nginx/nginx_c2h5oh/config
 
