@@ -1,7 +1,15 @@
 Build
 =====
 
-cmake 3.2 is required for build 
+Dependencies for build
+----------------------
+
+cmake 3.2+
+g++ 4.7+
+zlibc 
+libpq 
+libboost (only for tests) 
+hg (mercurial client for jsmn - lightweight json parser repo clone) 
 
 postgresql 9.5 is required for testing
 
