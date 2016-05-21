@@ -85,7 +85,7 @@ ExternalProject_Add(nginx
 
 ExternalProject_Add_Step(nginx nginx_download
  COMMAND test -e ${NX_TAR} || curl ${NX_URL} --create-dirs -o ${NX_TAR}
- #COMMAND cp ${NX_C2H5OH_CONFIG}.${CMAKE_BUILD_TYPE} ${NX_C2H5OH_CONFIG}
+ COMMAND cp ${NX_C2H5OH_CONFIG}.${CMAKE_BUILD_TYPE} ${NX_C2H5OH_CONFIG}
  DEPENDERS build
  WORKING_DIRECTORY ${NX_DBUILD}
  DEPENDS c2h5oh ${NX_C2H5OH_CONFIG}.${CMAKE_BUILD_TYPE}

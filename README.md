@@ -1,9 +1,23 @@
 Build
 =====
 
-cmake 3.2 is required for build 
+Dependencies for build
+----------------------
 
-postgresql 9.5 is required for testing
+* cmake 3.2+
+* g++ 4.7+
+* zlibc 
+* libpcre3 (for nginx rewrite module)
+* openssl (for nginx ssl support)
+* libpq 
+* libboost (only for tests) 
+* hg (mercurial client for jsmn - lightweight json parser repo clone) 
+
+Dependencies for testing
+------------------------
+
+* postgresql 9.5 with superuser rights for current user 
+* jq - command line json parser is required for testing
 
 ```sh
 make debug
