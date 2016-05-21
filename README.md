@@ -7,6 +7,8 @@ Dependencies for build
 * cmake 3.2+
 * g++ 4.7+
 * zlibc 
+* libpcre3 (for nginx rewrite module)
+* openssl (for nginx ssl support)
 * libpq 
 * libboost (only for tests) 
 * hg (mercurial client for jsmn - lightweight json parser repo clone) 
