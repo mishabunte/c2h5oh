@@ -7,7 +7,7 @@ set(NX_VER    nginx-1.8.0)
 set(NX_URL    http://nginx.org/download/${NX_VER}.tar.gz)
 set(NX_DBUILD ${CMAKE_SOURCE_DIR}/.build)
 set(NX_TAR    ${CMAKE_SOURCE_DIR}/deps/third-party/${NX_VER}.tar.gz)
-set(NX_C2H5OH_CONFIG ${CMAKE_CURRENT_SOURCE_DIR}/nginx_c2h5oh/config)
+set(NX_C2H5OH_CONFIG ${CMAKE_CURRENT_SOURCE_DIR}/nginx_c2h5oh/config.Release)
 
 set(NX_PREFIX     /etc/c2h5oh_nginx)
 set(NX_DRUN       /var/run)
@@ -17,6 +17,7 @@ set(NX_LOG        /var/log/c2h5oh)
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
   set(NX_CONFIGURE  "--with-debug")
+  set(NX_C2H5OH_CONFIG ${CMAKE_CURRENT_SOURCE_DIR}/nginx_c2h5oh/config.Debug)
 endif()
 
 
