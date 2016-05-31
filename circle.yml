@@ -13,8 +13,8 @@ checkout:
         - sudo service c2h5oh_nginx restart
         - echo "~/c2h5oh/postgrest postgres://apiuser:tsetotua@localhost:5433/test --pool=200 --anonymous=apiuser --port=3000 --jwt-secret x0x0x0x0x0  --max-rows=500 --schema=v1" > ~/postgrest-run.sh && chmod a+x ~/postgrest-run.sh
         - sudo apt-get install build-essential libssl-dev git
-        - git clone https://github.com/wg/wrk.git && cd wrk
-        - make && sudo cp wrk /usr/local/bin
+        - git clone https://github.com/wg/wrk.git 
+        - cd wrk && make && sudo cp wrk /usr/local/bin
 database:
     override:
         - sudo sh -c "echo \"host all all 127.0.0.1/32 trust\" > /etc/postgresql/9.5/main/pg_hba.conf"
