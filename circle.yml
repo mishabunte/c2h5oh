@@ -16,8 +16,8 @@ database:
     override:
         - sudo sh -c "echo \"host all all 127.0.0.1/32 trust\" > /etc/postgresql/9.5/main/pg_hba.conf"
         - sudo /etc/init.d/postgresql restart
-        - sudo -u postgres psql -c "create role autotest password 'tsetotua' login superuser;"  -p 5433
-        - sudo -u postgres psql -c 'create database test owner autotest;'   -p 5433
-        - sudo -u postgres psql -p 5433 test -f ~/c2h5oh/tests/postgrest-init.sql
+        - sudo -u postgres psql -c "create role autotest password 'tsetotua' login superuser;"  -p 5433 -h localhost
+        - sudo -u postgres psql -c 'create database test owner autotest;'   -p 5433 -h localhost
+        - sudo -u postgres psql -p 5433 test -f ~/c2h5oh/tests/postgrest-init.sql -h localhost
         - ~/postgrest-run.sh:
             background: true
