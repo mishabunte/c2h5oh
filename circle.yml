@@ -1,3 +1,6 @@
+machine:
+    services:
+        - postgresql
 checkout:
     post:
         - sudo apt-get install software-properties-common
