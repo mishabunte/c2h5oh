@@ -10,7 +10,7 @@ dependencies:
 checkout:
     post:
         - sudo service c2h5oh_nginx restart
-        - echo "~/c2h5oh/postgrest postgres://apiuser:tsetotua@localhost:5433/test --pool=200 --anonymous=apiuser --port=3000 --jwt-secret x0x0x0x0x0  --max-rows=500 --schema=v1" > ~/postgre    st-run.sh && chmod a+x ~/postgrest-run.sh
+        - echo "~/c2h5oh/postgrest postgres://apiuser:tsetotua@localhost:5433/test --pool=200 --anonymous=apiuser --port=3000 --jwt-secret x0x0x0x0x0  --max-rows=500 --schema=v1" > ~/postgrest-run.sh && chmod a+x ~/postgrest-run.sh
 database:
     override:
         - sudo -u postgres psql -c "create role autotest password 'tsetotua' login superuser;"  -p 5433
