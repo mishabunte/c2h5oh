@@ -24,3 +24,6 @@ database:
         - sudo -u postgres psql -p 5433 test -f ~/c2h5oh/tests/postgrest-init.sql -h localhost
         - ~/postgrest-run.sh:
             background: true
+test:
+    override:
+        - wrk -t 1 -c 200 -d 60s -s ~/c2h5oh/tests/postgrest-test.lua http://localhost:3000/rpc/dosum
