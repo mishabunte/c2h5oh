@@ -27,4 +27,4 @@ database:
 test:
     override:
         - wrk -t 1 -c 200 -d 60s -s ~/c2h5oh/tests/postgrest-test.lua http://localhost:3000/rpc/dosum
-        - wrk -t 1 -c 200 -d 60s 'http://localhost:10081/api/summ?a=10&b=20'
+        - wrk -t 1 -c 200 -d 60s 'http://localhost:10081/api/sum?a=10&b=20'
