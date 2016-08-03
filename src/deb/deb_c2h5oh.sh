@@ -75,13 +75,13 @@ echo "/etc/logrotate.d/c2h5oh_nginx
 # make debian/postinst
 #
 echo "#!/bin/sh
-adduser --system --group --quiet --no-create-home www-data
+id -u www-data &> /dev/null || adduser --system --group --quiet --no-create-home www-data
 
 chown -fR www-data:www-data /var/lib/c2h5oh
 chown -fR www-data:www-data /var/log/c2h5oh
 
 update-rc.d c2h5oh_nginx defaults
-#invoke-rc.d c2h5oh_nginx restart
+invoke-rc.d c2h5oh_nginx restart
 exit 0
 "  > $DEB_POSTINST  || exit 1
 chmod +x $DEB_POSTINST
@@ -90,7 +90,7 @@ chmod +x $DEB_POSTINST
 # make debian/prerm
 #
 echo "#!/bin/sh
-invoke-rc.d c2h5oh_nginx stop
+[ -f /etc/init.d/README ] && [ -f /etc/init.d/c2h5oh_nginx ] && invoke-rc.d c2h5oh_nginx stop
 exit 0
 "  > $DEB_PRERM  || exit 1
 chmod +x $DEB_PRERM
@@ -99,7 +99,7 @@ chmod +x $DEB_PRERM
 # make debian/postrm
 #
 echo "#!/bin/sh
-update-rc.d c2h5oh_nginx remove
+[ -f /etc/init.d/c2h5oh_nginx ] && update-rc.d c2h5oh_nginx remove
 [ -f /etc/init.d/c2h5oh_nginx ] && unlink /etc/init.d/c2h5oh_nginx
 exit 0
 "  > $DEB_POSTRM  || exit 1
