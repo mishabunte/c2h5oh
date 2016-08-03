@@ -6,5 +6,5 @@ dependencies:
         - sudo apt-get install cmake libboost-all-dev
         - make debug && make test
         - make deb
-        - sudo ./deploy/c2h5oh-nginx_0.0.0_amd64.sh
+        - sudo ./deploy/c2h5oh-nginx_0.0.1_amd64.sh
         - sudo service c2h5oh_nginx restart
