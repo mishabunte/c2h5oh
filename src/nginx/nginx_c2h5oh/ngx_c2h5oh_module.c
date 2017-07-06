@@ -13,9 +13,9 @@
 const u_char k_ngx_c2h5oh_select[]        = "select web.";
 const u_char ngx_c2h5oh_content_type[]    = "application/json; charset=utf-8";
 
-static jsmntok_t  *ngx_c2h5oh_js_tokens;
-static int         ngx_c2h5oh_js_tokens_count;
-static jsmn_parser ngx_c2h5oh_jsmn_parser;
+static jsmntok_t  *ngx_c2h5oh_js_tokens = 0;
+static int         ngx_c2h5oh_js_tokens_count = 0;
+static jsmn_parser ngx_c2h5oh_jsmn_parser = {};
 
 //-----------------------------------------------------------------------------
 static ngx_http_module_t  ngx_c2h5oh_module_ctx = {
@@ -68,7 +68,7 @@ ngx_int_t ngx_c2h5oh_init_process(ngx_cycle_t * c)
   ngx_c2h5oh_js_tokens = malloc(sizeof(jsmntok_t) * ngx_c2h5oh_js_tokens_count);
 
   return NGX_OK;
-};
+}
 
 //-----------------------------------------------------------------------------
 void ngx_c2h5oh_exit_process(ngx_cycle_t * c) 
@@ -76,7 +76,7 @@ void ngx_c2h5oh_exit_process(ngx_cycle_t * c)
   free(ngx_c2h5oh_js_tokens);
 
   c2h5oh_module_cleanup();
-};
+}
 
 //-----------------------------------------------------------------------------
 ngx_module_t  ngx_c2h5oh_module = {
