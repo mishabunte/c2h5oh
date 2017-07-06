@@ -9,7 +9,7 @@ namespace Pq {
 
 //-----------------------------------------------------------------------------
 struct Pg {
-  Pg() : conn(nullptr), cancel(nullptr) {};
+  Pg() : conn(nullptr), cancel(nullptr) {}
   PGconn * conn;
   PGcancel * cancel;
 };

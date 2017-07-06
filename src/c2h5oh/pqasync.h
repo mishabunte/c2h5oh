@@ -33,16 +33,16 @@ public:
   /** Poll query, returns true if query completed */
   bool poll();
   /** Check for result is ready */
-  bool has_result() const { return state == PqState::RESULT && has_result_; };
+  bool has_result() const { return state == PqState::RESULT && has_result_; }
   /** Check for result is null */
-  bool result_is_null() const { return result_is_null_; };
+  bool result_is_null() const { return result_is_null_; }
   /** Check for result is error */
-  bool result_is_error() const { return result_is_error_; };
+  bool result_is_error() const { return result_is_error_; }
   /** Returns result */
   const std::string & get_result();
   /** Returns last error */
-  const std::string & get_last_error() const { return last_error; };
-  bool has_last_error() const { return last_error.empty(); };
+  const std::string & get_last_error() const { return last_error; }
+  bool has_last_error() const { return last_error.empty(); }
 
 private:
   std::unique_ptr<Pg> pg;       // libpq structures

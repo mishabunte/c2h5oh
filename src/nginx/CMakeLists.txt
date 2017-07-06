@@ -24,7 +24,8 @@ include(ExternalProject)
 
 ExternalProject_Add(jsmn                                                        
   SOURCE_DIR ${CMAKE_SOURCE_DIR}/deps/jsmn                                   
-  HG_REPOSITORY http://bitbucket.org/zserge/jsmn
+  # HG_REPOSITORY http://bitbucket.org/zserge/jsmn
+  GIT_REPOSITORY https://github.com/zserge/jsmn.git
   BUILD_IN_SOURCE 1                                                             
   UPDATE_COMMAND ""                                                             
   CONFIGURE_COMMAND ""                                                          
