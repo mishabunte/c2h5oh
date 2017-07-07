@@ -13,9 +13,9 @@
 const u_char k_ngx_c2h5oh_select[]        = "select web.";
 const u_char ngx_c2h5oh_content_type[]    = "application/json; charset=utf-8";
 
-static jsmntok_t  *ngx_c2h5oh_js_tokens = 0;
+static jsmntok_t  *ngx_c2h5oh_js_tokens = NULL;
 static int         ngx_c2h5oh_js_tokens_count = 0;
-static jsmn_parser ngx_c2h5oh_jsmn_parser = {};
+static jsmn_parser ngx_c2h5oh_jsmn_parser = {0, 0, 0};
 
 //-----------------------------------------------------------------------------
 static ngx_http_module_t  ngx_c2h5oh_module_ctx = {
