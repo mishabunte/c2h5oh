@@ -5,4 +5,11 @@ lib
 deps/*
 deploy
 src/nginx/nginx_c2h5oh/config
-
+tags
+CMakeCache.txt
+CMakeFiles
+*.cmake
+Testing
+src/deb/Makefile
+src/nginx/Makefile
+src/nginx/jsmn-prefix
