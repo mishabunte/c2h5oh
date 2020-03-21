@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.2)
 
 find_package(ZLIB REQUIRED)
 
-set(NX_VER    nginx-1.8.0)
+set(NX_VER    nginx-1.17.9)
 set(NX_URL    http://nginx.org/download/${NX_VER}.tar.gz)
 set(NX_DBUILD ${CMAKE_SOURCE_DIR}/.build)
 set(NX_TAR    ${CMAKE_SOURCE_DIR}/deps/third-party/${NX_VER}.tar.gz)
@@ -24,8 +24,8 @@ include(ExternalProject)
 
 ExternalProject_Add(jsmn                                                        
   SOURCE_DIR ${CMAKE_SOURCE_DIR}/deps/jsmn                                   
-  # HG_REPOSITORY http://bitbucket.org/zserge/jsmn
-  GIT_REPOSITORY https://github.com/zserge/jsmn.git
+   HG_REPOSITORY http://bitbucket.org/zserge/jsmn
+  #GIT_REPOSITORY https://github.com/zserge/jsmn.git
   BUILD_IN_SOURCE 1                                                             
   UPDATE_COMMAND ""                                                             
   CONFIGURE_COMMAND ""                                                          
@@ -60,8 +60,7 @@ ExternalProject_Add(nginx
   --add-module=${CMAKE_CURRENT_SOURCE_DIR}/nginx_c2h5oh
   --with-http_stub_status_module
   --with-http_auth_request_module
-  --with-ipv6  
-  --with-http_ssl_module
+  #--with-http_ssl_module
   #--with-file-aio
   --without-http_userid_module
   --without-http_auth_basic_module
