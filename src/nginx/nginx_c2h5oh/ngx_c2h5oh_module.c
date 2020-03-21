@@ -823,16 +823,61 @@ ngx_c2h5oh_post_response(ngx_http_request_t * r, ngx_c2h5oh_ctx_t * ctx)
   b->last_buf = 1;
   b->pos = content;
   b->last  = content + content_length;
-  if (ctx->callback.len) {
-    b->pos -= ctx->callback.len + 1;
-    ngx_memcpy(b->pos, ctx->callback.data, ctx->callback.len);
-    *(b->pos + ctx->callback.len) = '(';
-    *b->last++ = ')';
-    *b->last++ = ';';
-  }
+
+  //if (ctx->callback.len) {
+  //  b->pos -= ctx->callback.len + 1;
+  //  ngx_memcpy(b->pos, ctx->callback.data, ctx->callback.len);
+  //  *(b->pos + ctx->callback.len) = '(';
+  //  *b->last++ = ')';
+  //  *b->last++ = ';';
+  //}
 
   out.buf = b;
   out.next = NULL;
+
+  // check if data is postgres binary array
+  if (content_length > 4 &&  // check content length
+      b->pos[0] == '\\' &&  // check bytea header
+      b->pos[1] == '\\' &&  //
+      b->pos[2] == 'x' &&   //
+      (content_length - 3) / 2 * 2 == content_length - 3) // check len div 2
+  {
+    // decode binary data
+    const unsigned char * src = b->pos + 3; // skip header
+    unsigned char * dst = b->pos;
+    while(src != b->last) {
+      if (*src < '0' || (*src > '9' && (*src < 'a' || *src > 'f'))) {
+        ngx_log_error(NGX_LOG_ERR, r->connection->log, 0,
+          "[c2h5oh] unexpected byte in binary data at pos %d: %d", src - b->pos, *src);
+        return ngx_http_finalize_request(r, NGX_HTTP_INTERNAL_SERVER_ERROR);
+      }
+      *dst = (((*src > '9') ? (*src - 'a' + 10) : *src - '0') << 4);
+      src++;
+
+      if (*src < '0' || (*src > '9' && (*src < 'a' || *src > 'f'))) {
+        ngx_log_error(NGX_LOG_ERR, r->connection->log, 0,
+          "[c2h5oh] unexpected byte in binary data at pos %d: %d", src - b->pos, *src);
+        return ngx_http_finalize_request(r, NGX_HTTP_INTERNAL_SERVER_ERROR);
+      }
+      *dst |= (*src > '9') ? (*src - 'a' + 10) : (*src - '0');
+      src++;
+
+      dst++;
+    }
+    b->last = dst;
+    content_length = b->last - b->pos;
+
+  } else {
+    if (ctx->callback.len) {
+      b->pos -= ctx->callback.len + 1;
+      ngx_memcpy(b->pos, ctx->callback.data, ctx->callback.len);
+      *(b->pos + ctx->callback.len) = '(';
+      *b->last++ = ')';
+      *b->last++ = ';';
+
+      content_length += ctx->callback.len + sizeof("();") - 1;
+    }
+  }
 
   c2h5oh_free(ctx->conn); ctx->conn = NULL;
 
@@ -840,9 +885,9 @@ ngx_c2h5oh_post_response(ngx_http_request_t * r, ngx_c2h5oh_ctx_t * ctx)
     r->headers_out.content_type.len = sizeof(ngx_c2h5oh_content_type) - 1;
     r->headers_out.content_type.data = (u_char *)ngx_c2h5oh_content_type;
   }
-  if (ctx->callback.len) {
-    content_length += ctx->callback.len + sizeof("();") - 1;
-  }
+  //if (ctx->callback.len) {
+    //content_length += ctx->callback.len + sizeof("();") - 1;
+  //}
   r->headers_out.content_length_n = content_length;
   r->headers_out.last_modified_time = -1;
   if (r->headers_out.status == 0) {

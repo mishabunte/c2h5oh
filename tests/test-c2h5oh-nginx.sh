@@ -60,13 +60,13 @@ res=$(curl -i -s --cookie 'sid=42' 'http://localhost:10081/api/user/auth/'|head 
 echo "ok"
 
 echo -n "test upload auth ... "
-res=$(curl -POST -d@../../README -i -s 'http://localhost:10081/api/upload/'|head -n1|$trim)
+res=$(curl -POST -d@../../README.md -i -s 'http://localhost:10081/api/upload/'|head -n1|$trim)
 [ "$res" = 'HTTP/1.1 403 Forbidden' ] || exit_error
-res=$(curl -s -POST --data-binary @../../README -H 'Content-Type: application/octet-stream' \
+res=$(curl -s -POST --data-binary @../../README.md -H 'Content-Type: application/octet-stream' \
   --cookie 'sid=42' 'http://localhost:10081/api/upload/'|jq -r '.name')
 [ "$res" ] || exit_error
 res=$(curl -s "http://localhost:10081/uploads/$res" | md5sum)
-[ "$(cat ../../README | md5sum)" = "$res" ] || exit_error
+[ "$(cat ../../README.md | md5sum)" = "$res" ] || exit_error
 echo "ok"
 
 echo -n "test      logout ... "
@@ -82,6 +82,12 @@ echo -n "test  large_json ... "
 res=$(curl -s 'http://localhost:10081/api/large_json/?n=9000'|jq -c 'del(.data)'|jq -c '.status')
 [ "$res" = '"ok"' ] || exit_error
 echo "ok"
+
+echo -n "test      binary ... "
+res=$(curl -s 'http://localhost:10081/api/binary_data/')
+[ "$res" = 'abcdef' ] || exit_error
+echo "ok"
+
 echo ""
 
 #cat error.log

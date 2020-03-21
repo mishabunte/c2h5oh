@@ -148,6 +148,17 @@ begin
 end;
 $$ language plpgsql;
 
+
+-------------------------------------------------------------------------------
+create or replace function web.binary_data(c jsonb, q jsonb)
+  returns text as
+$$
+begin
+  return json_build_object('content', 'abcdef'::bytea,
+    'headers', 'application/octet-stream');
+end;
+$$ language plpgsql;
+
 -------------------------------------------------------------------------------
 create or replace function web.get_human_readable_sqlstate(varchar(5), varchar)
   returns varchar as
