@@ -99,8 +99,9 @@ BOOST_AUTO_TEST_CASE( test_error )
   ptime time_end = microsec_clock::local_time() + seconds(1);
   db.do_query("select pq_test.pq_test('{\"error\":true}');");
   while(db.poll() && time_end > microsec_clock::local_time()) usleep(1);
-  BOOST_CHECK(db.has_result() && db.result_is_error() && 
-              db.get_result() == "00001_ERROR:  00001\n");
+  BOOST_CHECK(db.has_result());
+  BOOST_CHECK(db.result_is_error());
+  BOOST_CHECK(db.get_result().starts_with("00001_ERROR:  00001\n"));
 
   // check for second query is working
   db.do_query("delete from pq_test.t; insert into pq_test.t values(1, 7); "
