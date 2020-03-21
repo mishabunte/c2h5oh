@@ -21,11 +21,11 @@ set(CFLAGS "-Wall -DBOOST_DATE_TIME_NO_LIB -DBOOST_SYSTEM_NO_DEPRECATED -DJSMN_P
 set(CFLAGS_RELEASE "-O3 -Werror ${CFLAGS}")
 set(CFLAGS_DEBUG   "-O0 -g -D_DEBUG  -Wextra ${CFLAGS}")
 
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS} -std=c11 ${CFLAGS_RELEASE}")
-set(CMAKE_C_FLAGS_DEBUG   "${CMAKE_C_FLAGS} -std=c11 ${CFLAGS_DEBUG}")
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS} -std=c2a ${CFLAGS_RELEASE}")
+set(CMAKE_C_FLAGS_DEBUG   "${CMAKE_C_FLAGS} -std=c2a ${CFLAGS_DEBUG}")
 
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -std=c++11 ${CFLAGS_RELEASE}")
-set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS} -std=c++11 ${CFLAGS_DEBUG}")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -std=c++2a ${CFLAGS_RELEASE}")
+set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS} -std=c++2a ${CFLAGS_DEBUG}")
 
 # dogshit for enable output in testing
 if (CMAKE_CONFIGURATION_TYPES)
@@ -47,6 +47,7 @@ link_directories(
 )
 
 include_directories(
+  /usr/local/include/
   /usr/include/postgresql
   src/c2h5oh
   deps/jsmn/
