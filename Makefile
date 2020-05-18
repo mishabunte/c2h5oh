@@ -3,16 +3,16 @@ LIB=lib
 PNX=./bin/c2h5oh_nginx
 NX=$(DIR)/nginx/objs/nginx 
 NXO=$(DIR)/nginx/objs/addon/nginx_c2h5oh/*.o
-CMAKE=cmake ..
+CMAKE=cmake .. .
 
 all: $(PNX)
 
-debug: CMAKE=cmake -DCMAKE_BUILD_TYPE=Debug ..
+debug: CMAKE=cmake -DCMAKE_BUILD_TYPE=Debug .. .
 debug: cmake 
 debug: compile
 debug: $(PNX)
 
-release: CMAKE=cmake -DCMAKE_BUILD_TYPE=Release ..
+release: CMAKE=cmake -DCMAKE_BUILD_TYPE=Release .. .
 release: cmake 
 release: compile
 release: $(PNX)
