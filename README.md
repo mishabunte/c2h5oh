@@ -13,6 +13,10 @@ Dependencies for build
 * libboost (only for tests) 
 * hg (mercurial client for jsmn - lightweight json parser repo clone) 
 
+```sh
+apt install libboost-filesystem-dev libboost-test-dev libboost-filesystem-dev zlib1g-dev mercurial libpq-dev gcc-9 g++-9 libpcre3-dev libgd-dev
+```
+
 Dependencies for testing
 ------------------------
 
