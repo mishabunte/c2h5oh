@@ -33,8 +33,17 @@ ExternalProject_Add(jsmn
   INSTALL_COMMAND ""                                                            
 )                      
 
+ExternalProject_Add(openssl
+  SOURCE_DIR ${CMAKE_SOURCE_DIR}/deps/openssl
+  URL https://www.openssl.org/source/openssl-1.1.1g.tar.gz
+  UPDATE_COMMAND ""                                                             
+  CONFIGURE_COMMAND ""                                                          
+  BUILD_COMMAND ""                                                            
+  INSTALL_COMMAND ""                                                            
+)
+
 ExternalProject_Add(nginx
-  DEPENDS jsmn 
+  DEPENDS jsmn openssl
   PREFIX ${NX_DBUILD}/nginx_trash
 #--Download step--------------
   URL ${NX_TAR}
@@ -60,7 +69,9 @@ ExternalProject_Add(nginx
   --add-module=${CMAKE_CURRENT_SOURCE_DIR}/nginx_c2h5oh
   --with-http_stub_status_module
   --with-http_auth_request_module
-  #--with-http_ssl_module
+  --with-http_image_filter_module
+  --with-http_ssl_module
+  --with-openssl=${CMAKE_SOURCE_DIR}/deps/openssl
   #--with-file-aio
   --without-http_userid_module
   --without-http_auth_basic_module
