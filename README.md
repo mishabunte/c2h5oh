@@ -1,7 +1,7 @@
 c2h5oh
 ======
 
-Postgresql REST API with focus on performance, 10x faster than openresty
+Postgresql REST API with focus on performance/productivity/memory, 10x faster than openresty
 
 |             | Performance, rps |
 | ----------- | ----------- |
