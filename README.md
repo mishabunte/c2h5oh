@@ -1,3 +1,13 @@
+c2h5oh
+======
+
+Postgresql REST API with focus on performance, 10x faster than openresty
+
+|             | Performance, rps |
+| ----------- | ----------- |
+| c2h5oh      | 3000 requests/second  |
+| openresty   | 300 requests/second   |
+
 Build
 =====
 
