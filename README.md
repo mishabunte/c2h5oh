@@ -1,5 +1,5 @@
-c2h5oh
-======
+c2h5oh - ethanolus
+==================
 
 Postgresql REST API with focus on performance/productivity/memory, 10x faster than openresty
 
