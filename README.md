@@ -1,6 +1,11 @@
 c2h5oh - ethanolus
 ==================
 
+> **Looking for the current project?** c2h5oh is the original project behind
+> [pgxio](https://pgxio.org), its current Rust/Nginx revival. New development
+> and deployments happen in pgxio; this repository is preserved for historical
+> reference.
+
 Postgresql REST API with focus on performance/productivity/memory, 10x faster than openresty
 
 |             | Performance, rps |
